@@ -7,9 +7,16 @@ import java.util.Objects;
  * @author Luk
  */
 public class Pairs {
+    //first coordinate of EP
     int a;
+    //second coordinate of EP
     int b;
-
+    
+    /**
+     *initialization Constructor
+     * @param a first coordinate of EP
+     * @param b second coordinate of EP
+     */
     public Pairs(int a, int b) {
         this.a = a;
         this.b = b;

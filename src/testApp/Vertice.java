@@ -6,16 +6,24 @@ package testApp;
  */
 public class Vertice {
 
+    //cordinates of graph vertice K
     private int w1;
     private int w2;
     private int w3;
-
+    
+    /**
+     * initialization Constructor
+     * @param w1 first coordinate of vertice K
+     * @param w2 second coordinate of vertice K
+     * @param w3 third coordinates of vertice K
+     */
     public Vertice(int w1, int w2, int w3) {
         this.w1 = w1;
         this.w2 = w2;
         this.w3 = w3;
     }
-
+    
+    //list of getters
     public int getW1() {
         return w1;
     }
@@ -33,6 +41,7 @@ public class Vertice {
         return k;
     }
 
+    //list of setters
     public void setW1(int w1) {
         this.w1 = w1;
     }
@@ -44,7 +53,8 @@ public class Vertice {
     public void setW3(int w3) {
         this.w3 = w3;
     }
-
+    
+    
     @Override
     public String toString() {
         return "[" + w1 + ", " + w2 + ", " + w3 + "]";

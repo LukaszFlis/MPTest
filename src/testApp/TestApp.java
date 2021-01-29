@@ -9,6 +9,7 @@ import java.util.Scanner;
  * @author Luk
  */
 public class TestApp {
+
     private static final Scanner sc = new Scanner(System.in);
     //array mapping  for LU graf
     private static final int[][] d = {{1, 0, 0, 1}, {0, 1, 0, 1}, {0, 0, 1, 0}};
@@ -18,7 +19,6 @@ public class TestApp {
     private static final int[] ft = new int[3];
     //coordinates of vertex
     private static ArrayList<Vertice> k = new ArrayList<Vertice>(20);
-    //k.add?????????? czemu nie mogę dodać elementu ?
     //list of CPU clocks
     private static ArrayList<Integer> t = new ArrayList<>(20);
     // list of EP vertex coordinates
@@ -36,10 +36,10 @@ public class TestApp {
         //initFt(ft);
         //System.out.println(isFtGood(ft, d));
         //printFt(ft);
-        initK(k);
-        //printK(k);
-        //setFsK(fsK, k, fs);
-        //setFtK(t, k, ft);
+        initK(k);// main thread zatrzymuje się na tej metodzie/ metoda nie jest wykonywana ?! 
+        printK(k);
+        //setFsK(fsK, huj, fs);
+        //setFtK(t, huj, ft);
         //setEP(ep, fsK, t);
         //printEP(ep);
     }
@@ -79,11 +79,14 @@ public class TestApp {
      * Initialize elements of the Vertice list
      *
      * @param k a list containing the coordinates of the graph's vertices
+     * @return
      */
-    public static void initK(ArrayList<Vertice> k) { //ta metoda nie odpala się
+    public static ArrayList initK(ArrayList<Vertice> k) { //ta metoda nie odpala się
         System.out.println("");
-        int w1, w2, w3;
-        var nr = 1;
+        int w1 = 0;
+        int w2 = 0;
+        int w3 = 0;
+        int nr = 1;
         for (int i = 0; i < k.size(); i++) {
             System.out.print("Podaj w1" + nr + "wierzchołka: ");
             w1 = sc.nextInt();
@@ -91,10 +94,10 @@ public class TestApp {
             w2 = sc.nextInt();
             System.out.println("Podaj w3" + nr + "wierzchołka: ");
             w3 = sc.nextInt();
-            //tu niby działa
             k.add(new Vertice(w1, w2, w3));
             nr++;
         }
+        return k;
     }
 
     /**
@@ -149,6 +152,7 @@ public class TestApp {
     }
 
     /**
+     * Multiply matrix ft with vertice K
      *
      * @param ftK a list containing the CPU clocks executed in the processing
      * element
@@ -171,7 +175,7 @@ public class TestApp {
     }
 
     /**
-     * Set list of EP veritces
+     * Set list of MP processing element's veritces (fs * k)
      *
      * @param fsK a list containing pairs of coordinates of processing elements
      * @param k a list containing the coordinates of the graph's vertices
@@ -200,6 +204,13 @@ public class TestApp {
         }
     }
 
+    /**
+     * Set list of MP processing element's (ep id + cpu clock)
+     *
+     * @param ep Arraylist of MP processing elements
+     * @param fsk ArrayList of products (fs*k)
+     * @param ftk ArrayList of products (ft*k), CPU clocks
+     */
     public static void setEP(ArrayList<EP> ep, ArrayList<Pairs> fsk, ArrayList<Integer> ftk) {
         for (int i = 0; i < ep.size(); i++) {
             ep.add(new EP(fsk.get(i), ftk.get(i)));
@@ -237,6 +248,11 @@ public class TestApp {
         System.out.print("|\n");
     }
 
+    /**
+     * Print in preety format list of veritices to console
+     *
+     * @param k a list containing the coordinates of the graph's vertices
+     */
     public static void printK(ArrayList<Vertice> k) {
         System.out.println("Lista wierzchołków grafu");
         for (int i = 0; i < k.size(); i++) {
@@ -244,6 +260,11 @@ public class TestApp {
         }
     }
 
+    /**
+     * Print in preety format list of veritices to console
+     *
+     * @param ep a list of processing element's (ep id + cpu clock)
+     */
     public static void printEP(ArrayList<EP> ep) {
         System.out.println("Macierz elementów przetwarzających");
         for (int i = 0; i < ep.size(); i++) {

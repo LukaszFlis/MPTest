@@ -12,7 +12,7 @@ public class EP {
     private int t;
 
     /**
-     * Konstruktor inicjujący wszystkie zmienne
+     * initializing constructor
      *
      * @param id coordinates of EP
      * @param t cpu clock
@@ -22,7 +22,7 @@ public class EP {
         this.t = t;
     }
     
-    //Gettery do zmiennych
+    //list of getters
     public Pairs getId() {
         return id;
     }
@@ -31,7 +31,7 @@ public class EP {
         return t;
     }
     
-    
+    //list of setters
     public void setId(Pairs id) {
         this.id = id;
     }
