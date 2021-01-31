@@ -8,20 +8,28 @@ import java.util.Objects;
  */
 public class Pairs {
     //first coordinate of EP
-    int a;
+    Integer a;
     //second coordinate of EP
-    int b;
+    Integer b;
     
     /**
      *initialization Constructor
      * @param a first coordinate of EP
      * @param b second coordinate of EP
      */
-    public Pairs(int a, int b) {
+    public Pairs(Integer a, Integer b) {
         this.a = a;
         this.b = b;
     }
 
+    public Integer getA() {
+        return a;
+    }
+
+    public Integer getB() {
+        return b;
+    }
+    
     @Override
     public String toString() {
         return "(" + a + ", " + b + ")";
@@ -36,8 +44,8 @@ public class Pairs {
             return false;
         }
         Pairs that = (Pairs) o;
-        return a == that.a
-                && b == that.b;
+        return Objects.equals(a, that.a)
+                && Objects.equals(b, that.b);
     }
 
     @Override
